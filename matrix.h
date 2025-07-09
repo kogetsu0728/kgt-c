@@ -31,4 +31,8 @@ Mat mat_add(const Mat, const Mat);
 Mat mat_sub(const Mat, const Mat);
 Mat mat_mul(const Mat, const Mat);
 
+Mat mat_add_scl(const Mat, const MatVal);
+Mat mat_sub_scl(const Mat, const MatVal);
+Mat mat_mul_scl(const Mat, const MatVal);
+
 #endif

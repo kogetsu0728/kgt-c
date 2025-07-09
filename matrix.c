@@ -111,60 +111,60 @@ void mat_out(FILE* out, const Mat self) {
     return;
 }
 
-Mat mat_add(const Mat a, const Mat b) {
-    assert(a != NULL);
-    assert(b != NULL);
-    assert(mat_get_row(a) == mat_get_row(b));
-    assert(mat_get_col(a) == mat_get_col(b));
+Mat mat_add(const Mat lhs, const Mat rhs) {
+    assert(lhs != NULL);
+    assert(rhs != NULL);
+    assert(mat_get_row(lhs) == mat_get_row(rhs));
+    assert(mat_get_col(lhs) == mat_get_col(rhs));
 
-    const size_t row = mat_get_row(a);
-    const size_t col = mat_get_col(a);
+    const size_t row = mat_get_row(lhs);
+    const size_t col = mat_get_col(lhs);
 
     Mat res = mat_new(row, col);
 
     for (size_t i = 0; i < row; ++i) {
         for (size_t j = 0; j < col; ++j) {
-            const MatVal av = mat_get_val(a, i, j);
-            const MatVal bv = mat_get_val(b, i, j);
+            const MatVal vl = mat_get_val(lhs, i, j);
+            const MatVal vr = mat_get_val(rhs, i, j);
 
-            mat_set_val(res, i, j, av + bv);
+            mat_set_val(res, i, j, vl + vr);
         }
     }
 
     return res;
 }
 
-Mat mat_sub(const Mat a, const Mat b) {
-    assert(a != NULL);
-    assert(b != NULL);
-    assert(mat_get_row(a) == mat_get_row(b));
-    assert(mat_get_col(a) == mat_get_col(b));
+Mat mat_sub(const Mat lhs, const Mat rhs) {
+    assert(lhs != NULL);
+    assert(rhs != NULL);
+    assert(mat_get_row(lhs) == mat_get_row(rhs));
+    assert(mat_get_col(lhs) == mat_get_col(rhs));
 
-    const size_t row = mat_get_row(a);
-    const size_t col = mat_get_col(a);
+    const size_t row = mat_get_row(lhs);
+    const size_t col = mat_get_col(lhs);
 
     Mat res = mat_new(row, col);
 
     for (size_t i = 0; i < row; ++i) {
         for (size_t j = 0; j < col; ++j) {
-            const MatVal av = mat_get_val(a, i, j);
-            const MatVal bv = mat_get_val(b, i, j);
+            const MatVal vl = mat_get_val(lhs, i, j);
+            const MatVal vr = mat_get_val(rhs, i, j);
 
-            mat_set_val(res, i, j, av - bv);
+            mat_set_val(res, i, j, vl - vr);
         }
     }
 
     return res;
 }
 
-Mat mat_mul(const Mat a, const Mat b) {
-    assert(a != NULL);
-    assert(b != NULL);
-    assert(mat_get_col(a) == mat_get_row(b));
+Mat mat_mul(const Mat lhs, const Mat rhs) {
+    assert(lhs != NULL);
+    assert(rhs != NULL);
+    assert(mat_get_col(lhs) == mat_get_row(rhs));
 
-    const size_t cnt = mat_get_col(a);
-    const size_t row = mat_get_row(a);
-    const size_t col = mat_get_col(b);
+    const size_t row = mat_get_row(lhs);
+    const size_t col = mat_get_col(rhs);
+    const size_t cnt = mat_get_col(lhs);
 
     Mat res = mat_new(row, col);
 
@@ -172,10 +172,68 @@ Mat mat_mul(const Mat a, const Mat b) {
         for (size_t j = 0; j < col; ++j) {
             for (size_t k = 0; k < cnt; ++k) {
                 const MatVal v = mat_get_val(res, i, j);
-                const MatVal d = mat_get_val(a, i, k) * mat_get_val(b, k, j);
+                const MatVal vl = mat_get_val(lhs, i, k);
+                const MatVal vr = mat_get_val(rhs, k, j);
 
-                mat_set_val(res, i, j, v + d);
+                mat_set_val(res, i, j, v + vl * vr);
             }
+        }
+    }
+
+    return res;
+}
+
+Mat mat_add_scl(const Mat lhs, const MatVal rhs) {
+    assert(lhs != NULL);
+
+    const size_t row = mat_get_row(lhs);
+    const size_t col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (size_t i = 0; i < row; ++i) {
+        for (size_t j = 0; j < col; ++j) {
+            const MatVal vl = mat_get_val(lhs, i, j);
+
+            mat_set_val(res, i, j, vl + rhs);
+        }
+    }
+
+    return res;
+}
+
+Mat mat_sub_scl(const Mat lhs, const MatVal rhs) {
+    assert(lhs != NULL);
+
+    const size_t row = mat_get_row(lhs);
+    const size_t col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (size_t i = 0; i < row; ++i) {
+        for (size_t j = 0; j < col; ++j) {
+            const MatVal vl = mat_get_val(lhs, i, j);
+
+            mat_set_val(res, i, j, vl - rhs);
+        }
+    }
+
+    return res;
+}
+
+Mat mat_mul_scl(const Mat lhs, const MatVal rhs) {
+    assert(lhs != NULL);
+
+    const size_t row = mat_get_row(lhs);
+    const size_t col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (size_t i = 0; i < row; ++i) {
+        for (size_t j = 0; j < col; ++j) {
+            const MatVal vl = mat_get_val(lhs, i, j);
+
+            mat_set_val(res, i, j, vl * rhs);
         }
     }
 
