@@ -12,6 +12,8 @@
 #define ASSERT_GT(a, b) assert((a) > (b))
 #define ASSERT_GE(a, b) assert((a) >= (b))
 
+#define ASSERT_BT(a, b, c) assert((a) >= (b) && (a) < (c))
+
 #define ASSERT_NE_NULL(a) ASSERT_NE((a), NULL)
 
 #define GET_MIN(a, b) (((a) < (b)) ? (a) : (b))
