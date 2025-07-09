@@ -79,34 +79,34 @@ MatVal mat_set_val(Mat self, const size_t i, const size_t j, const MatVal v) {
     return v;
 }
 
-void mat_out(FILE* out, const Mat self) {
-    assert(out != NULL);
+void mat_out(const Mat self, FILE* st) {
+    assert(st != NULL);
     assert(self != NULL);
 
-    fprintf(out, "[");
+    fprintf(st, "[");
 
     const size_t col = mat_get_col(self);
     const size_t row = mat_get_row(self);
 
     for (size_t i = 0; i < row; ++i) {
         if (0 < i) {
-            fprintf(out, ",\n ");
+            fprintf(st, ",\n ");
         }
 
-        fprintf(out, "[");
+        fprintf(st, "[");
 
         for (size_t j = 0; j < col; ++j) {
             if (0 < j) {
-                fprintf(out, ",");
+                fprintf(st, ",");
             }
 
-            fprintf(out, "%8.5lf", mat_get_val(self, i, j));
+            fprintf(st, "%8.5lf", mat_get_val(self, i, j));
         }
 
-        fprintf(out, "]");
+        fprintf(st, "]");
     }
 
-    fprintf(out, "]\n");
+    fprintf(st, "]\n");
 
     return;
 }

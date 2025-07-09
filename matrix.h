@@ -25,7 +25,7 @@ size_t mat_get_row(const Mat self);
 MatVal mat_get_val(const Mat, const size_t, const size_t);
 MatVal mat_set_val(Mat, const size_t, const size_t, const MatVal);
 
-void mat_out(FILE*, const Mat self);
+void mat_out(const Mat, FILE*);
 
 Mat mat_add(const Mat, const Mat);
 Mat mat_sub(const Mat, const Mat);
