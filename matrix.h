@@ -19,8 +19,8 @@ Mat mat_new(const size_t, const size_t);
 Mat mat_cpy(const Mat);
 Mat mat_del(Mat);
 
-size_t mat_get_col(const Mat self);
-size_t mat_get_row(const Mat self);
+size_t mat_get_col(const Mat);
+size_t mat_get_row(const Mat);
 
 MatVal mat_get_val(const Mat, const size_t, const size_t);
 MatVal mat_set_val(Mat, const size_t, const size_t, const MatVal);
