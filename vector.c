@@ -68,6 +68,28 @@ Sca vec_set_val(Vec self, const Dim idx, const Sca val) {
     return val;
 }
 
+void vec_out(const Vec self, FILE* st) {
+    ASSERT_NE_NULL(self);
+
+    const Dim dim = vec_get_dim(self);
+
+    fprintf(st, "[");
+
+    for (Dim i = 0; i < dim; ++i) {
+        if (0 < i) {
+            fprintf(st, ",");
+        }
+
+        const Sca v = vec_get_val(self, i);
+
+        fprintf(st, "%8.5lf", v);
+    }
+
+    fprintf(st, "]");
+
+    return;
+}
+
 Vec vec_add(const Vec lhs, const Vec rhs) {
     ASSERT_NE_NULL(lhs);
     ASSERT_NE_NULL(rhs);
