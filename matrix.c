@@ -57,3 +57,75 @@ Mat mat_cpy(const Mat self) {
 
     return res;
 }
+
+Dim mat_get_row(const Mat self) {
+    ASSERT_NE_NULL(self);
+
+    return self->row;
+}
+
+Dim mat_get_col(const Mat self) {
+    ASSERT_NE_NULL(self);
+
+    return self->col;
+}
+
+Sca mat_get_val(const Mat self, const Dim row, const Dim col) {
+    ASSERT_NE_NULL(self);
+    ASSERT_LT(row, mat_get_row(self));
+    ASSERT_LT(col, mat_get_col(self));
+
+    return vec_get_val(self->vec[row], col);
+}
+
+Sca mat_set_val(Mat self, const Dim row, const Dim col, const Sca sca) {
+    ASSERT_NE_NULL(self);
+    ASSERT_LT(row, mat_get_row(self));
+    ASSERT_LT(col, mat_get_col(self));
+
+    return vec_set_val(self->vec[row], col, sca);
+}
+
+Mat sca_to_mat(const Sca sca) {
+    Mat res = mat_new(1, 1);
+
+    mat_set_val(res, 0, 0, sca);
+
+    return res;
+}
+
+Mat vec_to_mat(const Vec vec) {
+    ASSERT_NE_NULL(vec);
+
+    const Dim row = vec_get_dim(vec);
+
+    Mat res = mat_new(row, 1);
+
+    for (Dim i = 0; i < row; ++i) {
+        const Sca val = vec_get_val(vec, i);
+
+        mat_set_val(res, i, 0, val);
+    }
+
+    return res;
+}
+
+void mat_out(const Mat self, FILE* st) {
+    ASSERT_NE_NULL(self);
+
+    const Dim row = mat_get_row(self);
+
+    fprintf(st, "[");
+
+    for (Dim i = 0; i < row; ++i) {
+        if (i > 0) {
+            fprintf(st, ",\n ");
+        }
+
+        vec_out(self->vec[i], st);
+    }
+
+    fprintf(st, "]");
+
+    return;
+}

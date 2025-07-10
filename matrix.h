@@ -14,8 +14,6 @@ Mat mat_new(const Dim, const Dim);
 Mat mat_del(Mat);
 Mat mat_cpy(const Mat);
 
-Mat vec_to_mat(const Vec);
-
 Dim mat_get_row(const Mat);
 Dim mat_get_col(const Mat);
 
@@ -25,7 +23,7 @@ Sca mat_set_val(Mat, const Dim, const Dim, const Sca);
 Mat sca_to_mat(const Sca);
 Mat vec_to_mat(const Vec);
 
-void mat_out(const Vec, FILE*);
+void mat_out(const Mat, FILE*);
 
 Mat mat_add(const Mat, const Mat);
 Mat mat_sub(const Mat, const Mat);
