@@ -3,6 +3,7 @@
 Mat mat_new(const Dim row, const Dim col) {
     ASSERT_LT(row, MAX_DIM);
     ASSERT_LT(col, MAX_DIM);
+    ASSERT_LT(row * col, MAX_DIM);
 
     Mat self = malloc(sizeof(MatDat));
     ASSERT_NE_NULL(self);
