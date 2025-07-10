@@ -52,48 +52,46 @@ Dim vec_get_dim(const Vec self) {
     return self->dim;
 }
 
-Sca vec_get_val(const Vec self, const Dim idx) {
+Sca vec_get_val(const Vec self, const Dim dim) {
     ASSERT_NE_NULL(self);
-    ASSERT_BT(idx, 0, vec_get_dim(self));
+    ASSERT_BT(dim, 0, vec_get_dim(self));
 
-    return self->val[idx];
+    return self->val[dim];
 }
 
-Sca vec_set_val(Vec self, const Dim idx, const Sca val) {
+Sca vec_set_val(Vec self, const Dim dim, const Sca sca) {
     ASSERT_NE_NULL(self);
-    ASSERT_BT(idx, 0, vec_get_dim(self));
+    ASSERT_BT(dim, 0, vec_get_dim(self));
 
-    self->val[idx] = val;
-
-    return val;
+    return self->val[dim] = sca;
 }
 
-Vec sca_to_vec(const Sca val) {
+Vec sca_to_vec(const Sca sca) {
     Vec res = vec_new(1);
 
-    vec_set_val(res, 0, val);
+    vec_set_val(res, 0, sca);
 
     return res;
 }
 
-void vec_out(const Vec self, FILE* st) {
+void vec_out(const Vec self, FILE* str) {
     ASSERT_NE_NULL(self);
 
     const Dim dim = vec_get_dim(self);
 
-    fprintf(st, "[");
+    fprintf(str, "[");
 
     for (Dim i = 0; i < dim; ++i) {
         if (0 < i) {
-            fprintf(st, ",");
+            fprintf(str, ",");
         }
 
         const Sca v = vec_get_val(self, i);
 
-        fprintf(st, "%8.5lf", v);
+        fprintf(str, "%8.5lf", v);
     }
 
-    fprintf(st, "]");
+    fprintf(str, "]");
 
     return;
 }

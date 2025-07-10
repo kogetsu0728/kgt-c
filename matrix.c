@@ -111,22 +111,22 @@ Mat vec_to_mat(const Vec vec) {
     return res;
 }
 
-void mat_out(const Mat self, FILE* st) {
+void mat_out(const Mat self, FILE* str) {
     ASSERT_NE_NULL(self);
 
     const Dim row = mat_get_row(self);
 
-    fprintf(st, "[");
+    fprintf(str, "[");
 
     for (Dim i = 0; i < row; ++i) {
         if (i > 0) {
-            fprintf(st, ",\n ");
+            fprintf(str, ",\n ");
         }
 
-        vec_out(self->vec[i], st);
+        vec_out(self->vec[i], str);
     }
 
-    fprintf(st, "]");
+    fprintf(str, "]");
 
     return;
 }

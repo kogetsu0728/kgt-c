@@ -9,7 +9,7 @@
 #include "utility.h"
 
 typedef double Sca;
-typedef size_t Dim;
+typedef ssize_t Dim;
 
 typedef struct {
     Dim dim;
