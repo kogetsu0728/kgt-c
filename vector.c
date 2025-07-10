@@ -3,7 +3,7 @@
 const Dim MAX_DIM = (1 << 20);
 
 Vec vec_new(const Dim dim) {
-    ASSERT_BT(dim, 0, MAX_DIM);
+    ASSERT_LT(dim, MAX_DIM);
 
     Vec self = malloc(sizeof(VecDat));
     ASSERT_NE_NULL(self);
@@ -54,14 +54,14 @@ Dim vec_get_dim(const Vec self) {
 
 Sca vec_get_val(const Vec self, const Dim dim) {
     ASSERT_NE_NULL(self);
-    ASSERT_BT(dim, 0, vec_get_dim(self));
+    ASSERT_LT(dim, vec_get_dim(self));
 
     return self->val[dim];
 }
 
 Sca vec_set_val(Vec self, const Dim dim, const Sca sca) {
     ASSERT_NE_NULL(self);
-    ASSERT_BT(dim, 0, vec_get_dim(self));
+    ASSERT_LT(dim, vec_get_dim(self));
 
     return self->val[dim] = sca;
 }

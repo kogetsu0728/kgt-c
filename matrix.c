@@ -1,9 +1,9 @@
 #include "matrix.h"
 
 Mat mat_new(const Dim row, const Dim col) {
-    ASSERT_BT(row, 0, MAX_DIM);
-    ASSERT_BT(col, 0, MAX_DIM);
-    ASSERT_BT(row * col, 0, MAX_DIM);
+    ASSERT_LT(row, MAX_DIM);
+    ASSERT_LT(col, MAX_DIM);
+    ASSERT_LT(row * col, MAX_DIM);
 
     Mat self = malloc(sizeof(MatDat));
     ASSERT_NE_NULL(self);
@@ -73,16 +73,16 @@ Dim mat_get_col(const Mat self) {
 
 Sca mat_get_val(const Mat self, const Dim row, const Dim col) {
     ASSERT_NE_NULL(self);
-    ASSERT_BT(row, 0, mat_get_row(self));
-    ASSERT_BT(col, 0, mat_get_col(self));
+    ASSERT_LT(row, mat_get_row(self));
+    ASSERT_LT(col, mat_get_col(self));
 
     return vec_get_val(self->vec[row], col);
 }
 
 Sca mat_set_val(Mat self, const Dim row, const Dim col, const Sca sca) {
     ASSERT_NE_NULL(self);
-    ASSERT_BT(row, 0, mat_get_row(self));
-    ASSERT_BT(col, 0, mat_get_col(self));
+    ASSERT_LT(row, mat_get_row(self));
+    ASSERT_LT(col, mat_get_col(self));
 
     return vec_set_val(self->vec[row], col, sca);
 }
