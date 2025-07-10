@@ -29,13 +29,14 @@ Dim vec_get_dim(const Vec);
 Sca vec_get_val(const Vec, const Dim);
 Sca vec_set_val(Vec, const Dim, const Sca);
 
+Vec sca_to_vec(const Sca);
+
 void vec_out(const Vec, FILE*);
 
 Vec vec_add(const Vec, const Vec);
 Vec vec_sub(const Vec, const Vec);
 Vec vec_mul(const Vec, const Vec);
 Vec vec_div(const Vec, const Vec);
-
 Sca vec_dot(const Vec, const Vec);
 
 Vec vec_add_sca(const Vec, const Sca);
