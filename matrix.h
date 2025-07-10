@@ -4,14 +4,11 @@
 #include "vector.h"
 
 typedef struct {
-    Dim row;
+    Dim row, col;
     Vec* vec;
 } MatDat;
 
 typedef MatDat* Mat;
-
-extern const Dim MAX_ROW;
-extern const Dim MAX_COL;
 
 Mat mat_new(const Dim, const Dim);
 Mat mat_del(Mat);
