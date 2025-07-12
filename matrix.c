@@ -113,6 +113,7 @@ Mat vec_to_mat(const Vec vec) {
 
 void mat_out(const Mat self, FILE* str) {
     ASSERT_NE_NULL(self);
+    ASSERT_NE_NULL(str);
 
     const Dim row = mat_get_row(self);
 
@@ -129,4 +130,96 @@ void mat_out(const Mat self, FILE* str) {
     fprintf(str, "]");
 
     return;
+}
+
+Mat mat_add(const Mat lhs, const Mat rhs){
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+	ASSERT_EQ(mat_get_row(lhs), mat_get_row(rhs));
+    ASSERT_EQ(mat_get_col(lhs), mat_get_col(rhs));
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col; ++j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = mat_get_val(rhs, i, j);
+
+            mat_set_val(res, i, j, vl + vr);
+        }
+    }
+
+    return res;
+}
+
+Mat mat_sub(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+    ASSERT_EQ(mat_get_row(lhs), mat_get_row(rhs));
+    ASSERT_EQ(mat_get_col(lhs), mat_get_col(rhs));
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col; ++j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = mat_get_val(rhs, i, j);
+
+            mat_set_val(res, i, j, vl - vr);
+        }
+    }
+
+    return res;
+}
+
+Mat mat_mul(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+    ASSERT_EQ(mat_get_row(lhs), mat_get_row(rhs));
+    ASSERT_EQ(mat_get_col(lhs), mat_get_col(rhs));
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col; ++j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = mat_get_val(rhs, i, j);
+
+            mat_set_val(res, i, j, vl * vr);
+        }
+    }
+
+    return res;
+}
+
+Mat mat_div(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+    ASSERT_EQ(mat_get_row(lhs), mat_get_row(rhs));
+    ASSERT_EQ(mat_get_col(lhs), mat_get_col(rhs));
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col; ++j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = mat_get_val(rhs, i, j);
+
+            mat_set_val(res, i, j, vl / vr);
+        }
+    }
+
+    return res;
 }
