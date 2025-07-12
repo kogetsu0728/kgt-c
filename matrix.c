@@ -223,3 +223,32 @@ Mat mat_div(const Mat lhs, const Mat rhs) {
 
     return res;
 }
+
+Mat mat_dot(const Mat lhs, const Mat rhs){
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+    ASSERT_EQ(mat_get_col(lhs), mat_get_row(rhs));
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(rhs);
+    const Dim inner = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col; ++j) {
+            Sca sum = 0.0;
+
+            for (Dim k = 0; k < inner; ++k) {
+                const Sca vl = mat_get_val(lhs, i, k);
+                const Sca vr = mat_get_val(rhs, k, j);
+
+                sum += vl * vr;
+            }
+
+            mat_set_val(res, i, j, sum);
+        }
+    }
+
+    return res;
+}
