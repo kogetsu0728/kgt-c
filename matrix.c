@@ -366,3 +366,83 @@ Vec mat_dot_vec(const Mat lhs, const Vec rhs) {
 
     return res;
 }
+
+Mat mat_add_sca(const Mat lhs, const Sca rhs) {
+    ASSERT_NE_NULL(lhs);
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col++ j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = rhs;
+
+            mat_set_val(res, i, j, vl + vr);
+        }
+    }
+
+    return mat;
+}
+
+Mat mat_sub_sca(const Mat lhs, const Sca rhs) {
+    ASSERT_NE_NULL(lhs);
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col++ j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = rhs;
+
+            mat_set_val(res, i, j, vl - vr);
+        }
+    }
+
+    return mat;
+}
+
+Mat mat_mul_sca(const Mat lhs, const Sca rhs) {
+    ASSERT_NE_NULL(lhs);
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col++ j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = rhs;
+
+            mat_set_val(res, i, j, vl * vr);
+        }
+    }
+
+    return mat;
+}
+
+Mat mat_div_sca(const Mat lhs, const Sca rhs) {
+    ASSERT_NE_NULL(lhs);
+
+    const Dim row = mat_get_row(lhs);
+    const Dim col = mat_get_col(lhs);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col++ j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = rhs;
+
+            mat_set_val(res, i, j, vl / vr);
+        }
+    }
+
+    return mat;
+}
