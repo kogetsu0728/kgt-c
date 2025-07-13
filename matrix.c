@@ -376,7 +376,7 @@ Mat mat_add_sca(const Mat lhs, const Sca rhs) {
     Mat res = mat_new(row, col);
 
     for (Dim i = 0; i < row; ++i) {
-        for (Dim j = 0; j < col++ j) {
+        for (Dim j = 0; j < col; ++j) {
             const Sca vl = mat_get_val(lhs, i, j);
             const Sca vr = rhs;
 
@@ -384,7 +384,7 @@ Mat mat_add_sca(const Mat lhs, const Sca rhs) {
         }
     }
 
-    return mat;
+    return res;
 }
 
 Mat mat_sub_sca(const Mat lhs, const Sca rhs) {
@@ -396,7 +396,7 @@ Mat mat_sub_sca(const Mat lhs, const Sca rhs) {
     Mat res = mat_new(row, col);
 
     for (Dim i = 0; i < row; ++i) {
-        for (Dim j = 0; j < col++ j) {
+        for (Dim j = 0; j < col; ++j) {
             const Sca vl = mat_get_val(lhs, i, j);
             const Sca vr = rhs;
 
@@ -404,7 +404,7 @@ Mat mat_sub_sca(const Mat lhs, const Sca rhs) {
         }
     }
 
-    return mat;
+    return res;
 }
 
 Mat mat_mul_sca(const Mat lhs, const Sca rhs) {
@@ -416,7 +416,7 @@ Mat mat_mul_sca(const Mat lhs, const Sca rhs) {
     Mat res = mat_new(row, col);
 
     for (Dim i = 0; i < row; ++i) {
-        for (Dim j = 0; j < col++ j) {
+        for (Dim j = 0; j < col; ++j) {
             const Sca vl = mat_get_val(lhs, i, j);
             const Sca vr = rhs;
 
@@ -424,7 +424,7 @@ Mat mat_mul_sca(const Mat lhs, const Sca rhs) {
         }
     }
 
-    return mat;
+    return res;
 }
 
 Mat mat_div_sca(const Mat lhs, const Sca rhs) {
@@ -436,7 +436,7 @@ Mat mat_div_sca(const Mat lhs, const Sca rhs) {
     Mat res = mat_new(row, col);
 
     for (Dim i = 0; i < row; ++i) {
-        for (Dim j = 0; j < col++ j) {
+        for (Dim j = 0; j < col; ++j) {
             const Sca vl = mat_get_val(lhs, i, j);
             const Sca vr = rhs;
 
@@ -444,5 +444,5 @@ Mat mat_div_sca(const Mat lhs, const Sca rhs) {
         }
     }
 
-    return mat;
+    return res;
 }
