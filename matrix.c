@@ -340,3 +340,29 @@ Mat mat_div_vec(const Mat lhs, const Vec rhs) {
 
     return res;
 }
+
+Vec mat_dot_vec(const Mat lhs, const Vec rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+    ASSERT_EQ(mat_get_col(lhs), vec_get_dim(rhs));
+
+    const Dim dim = mat_get_row(lhs);
+    const Dim inner = vec_get_dim(rhs);
+
+    Vec res = vec_new(dim);
+
+    for (Dim i = 0; i < dim; ++i) {
+        Sca sum = 0;
+
+        for (Dim j = 0; j < inner; ++j) {
+            const Sca vl = mat_get_val(lhs, i, j);
+            const Sca vr = vec_get_val(rhs, j);
+
+            sum += vl * vr;
+        }
+
+        vec_set_val(res, i, sum);
+    }
+
+    return res;
+}
