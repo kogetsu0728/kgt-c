@@ -200,8 +200,9 @@ Vec vec_add_sca(const Vec lhs, const Sca rhs) {
 
     for (Dim i = 0; i < dim; ++i) {
         const Sca vl = vec_get_val(lhs, i);
+        const Sca vr = rhs;
 
-        vec_set_val(res, i, vl + rhs);
+        vec_set_val(res, i, vl + vr);
     }
 
     return res;
@@ -216,8 +217,9 @@ Vec vec_sub_sca(const Vec lhs, const Sca rhs) {
 
     for (Dim i = 0; i < dim; ++i) {
         const Sca vl = vec_get_val(lhs, i);
+        const Sca vr = rhs;
 
-        vec_set_val(res, i, vl - rhs);
+        vec_set_val(res, i, vl - vr);
     }
 
     return res;
@@ -232,8 +234,9 @@ Vec vec_mul_sca(const Vec lhs, const Sca rhs) {
 
     for (Dim i = 0; i < dim; ++i) {
         const Sca vl = vec_get_val(lhs, i);
+        const Sca vr = rhs;
 
-        vec_set_val(res, i, vl * rhs);
+        vec_set_val(res, i, vl * vr);
     }
 
     return res;
@@ -248,8 +251,9 @@ Vec vec_div_sca(const Vec lhs, const Sca rhs) {
 
     for (Dim i = 0; i < dim; ++i) {
         const Sca vl = vec_get_val(lhs, i);
+        const Sca vr = rhs;
 
-        vec_set_val(res, i, vl / rhs);
+        vec_set_val(res, i, vl / vr);
     }
 
     return res;

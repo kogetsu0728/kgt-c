@@ -6,9 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "scalar.h"
 #include "utility.h"
 
-typedef double Sca;
 typedef size_t Dim;
 
 typedef struct {
@@ -32,6 +32,8 @@ Sca vec_set_val(Vec, const Dim, const Sca);
 Vec sca_to_vec(const Sca);
 
 void vec_out(const Vec, FILE*);
+
+Vec vec_app(const Vec, const ScaFun);
 
 Vec vec_add(const Vec, const Vec);
 Vec vec_sub(const Vec, const Vec);
