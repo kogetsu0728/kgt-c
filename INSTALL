@@ -1,7 +1,4 @@
 #!/bin/bash
 
 mkdir lib
-
-cd src
 make
-cd ..
