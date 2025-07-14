@@ -59,6 +59,18 @@ Mat mat_cpy(const Mat self) {
     return res;
 }
 
+Mat mat_asn(Mat self, const Mat mat) {
+    if (self == mat) {
+        return mat;
+    }
+
+    if (self != NULL) {
+        self = mat_del(self);
+    }
+
+    return mat;
+}
+
 Dim mat_get_row(const Mat self) {
     ASSERT_NE_NULL(self);
 
@@ -84,13 +96,7 @@ static Vec mat_set_vec(Mat self, const Dim row, const Vec vec) {
     ASSERT_LT(row, mat_get_row(self));
     ASSERT_EQ(vec_get_dim(vec), mat_get_col(self));
 
-    if (mat_get_vec(self, row) == vec) {
-        return vec;
-    }
-
-    self->vec[row] = vec_del(mat_get_vec(self, row));
-
-    return self->vec[row] = vec;
+    return self->vec[row] = vec_asn(self->vec[row], vec);
 }
 
 Sca mat_get_val(const Mat self, const Dim row, const Dim col) {

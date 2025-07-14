@@ -46,6 +46,18 @@ Vec vec_cpy(const Vec self) {
     return res;
 }
 
+Vec vec_asn(Vec self, const Vec vec) {
+    if (self == vec) {
+        return vec;
+    }
+
+    if (self != NULL) {
+        self = vec_del(self);
+    }
+
+    return vec;
+}
+
 Dim vec_get_dim(const Vec self) {
     ASSERT_NE_NULL(self);
 
