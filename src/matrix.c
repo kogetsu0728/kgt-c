@@ -80,6 +80,7 @@ Vec mat_get_vec(const Mat self, const Dim row) {
 
 Vec mat_set_vec(const Mat self, const Dim row, const Vec vec) {
     ASSERT_NE_NULL(self);
+    ASSERT_NE_NULL(vec);
     ASSERT_LT(row, mat_get_row(self));
     ASSERT_EQ(vec_get_dim(vec), mat_get_col(self));
 
@@ -91,7 +92,7 @@ Sca mat_get_val(const Mat self, const Dim row, const Dim col) {
     ASSERT_LT(row, mat_get_row(self));
     ASSERT_LT(col, mat_get_col(self));
 
-    return vec_get_val(self->vec[row], col);
+    return vec_get_val(mat_get_vec(self, row), col);
 }
 
 Sca mat_set_val(Mat self, const Dim row, const Dim col, const Sca sca) {
@@ -99,7 +100,7 @@ Sca mat_set_val(Mat self, const Dim row, const Dim col, const Sca sca) {
     ASSERT_LT(row, mat_get_row(self));
     ASSERT_LT(col, mat_get_col(self));
 
-    return vec_set_val(self->vec[row], col, sca);
+    return vec_set_val(mat_get_vec(self, row), col, sca);
 }
 
 Mat sca_to_mat(const Sca sca) {
@@ -139,7 +140,7 @@ void mat_out(const Mat self, FILE* str) {
             fprintf(str, ",\n ");
         }
 
-        vec_out(self->vec[i], str);
+        vec_out(mat_get_vec(self, i), str);
     }
 
     fprintf(str, "]");
@@ -474,8 +475,8 @@ bool mat_eq(const Mat lhs, const Mat rhs) {
     }
 
     for (Dim i = 0; i < rl; ++i) {
-        const Vec vl = lhs->vec[i];
-        const Vec vr = rhs->vec[i];
+        const Vec vl = mat_get_vec(lhs, i);
+        const Vec vr = mat_get_vec(rhs, i);
 
         if (!vec_eq(vl, vr)) {
             return false;
@@ -512,8 +513,8 @@ bool mat_gt(const Mat lhs, const Mat rhs) {
             return true;
         }
 
-        const Vec vl = lhs->vec[i];
-        const Vec vr = rhs->vec[i];
+        const Vec vl = mat_get_vec(lhs, i);
+        const Vec vr = mat_get_vec(rhs, i);
 
         if (vec_lt(vl, vr)) {
             return false;
