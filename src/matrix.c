@@ -52,8 +52,9 @@ Mat mat_cpy(const Mat self) {
     Mat res = mat_new(row, col);
 
     for (Dim i = 0; i < row; ++i) {
-        res->vec[i] = vec_del(res->vec[i]);
-        res->vec[i] = vec_cpy(self->vec[i]);
+        const Vec cpy = vec_cpy(self->vec[i]);
+
+        res->vec[i] = vec_asn(res->vec[i], cpy);
     }
 
     return res;
