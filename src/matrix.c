@@ -228,16 +228,17 @@ Mat mat_dot(const Mat lhs, const Mat rhs) {
 
     const Dim row = mat_get_row(lhs);
     const Dim col = mat_get_col(rhs);
-    const Dim inner = mat_get_col(lhs);
 
     Mat res = mat_new(row, col);
 
     for (Dim i = 0; i < row; ++i) {
         for (Dim j = 0; j < col; ++j) {
+            const Dim dim = mat_get_col(lhs);
             const Vec vl = mat_get_vec(lhs, i);
-            Vec vr = vec_new(inner);
 
-            for (Dim k = 0; k < inner; ++k) {
+            Vec vr = vec_new(dim);
+
+            for (Dim k = 0; k < dim; ++k) {
                 vec_set_val(vr, k, mat_get_val(rhs, k, j));
             }
 
