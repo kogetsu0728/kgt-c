@@ -17,9 +17,6 @@ Mat mat_cpy(const Mat);
 Dim mat_get_row(const Mat);
 Dim mat_get_col(const Mat);
 
-Vec mat_get_vec(const Mat, const Dim);
-Vec mat_set_vec(Mat, const Dim, const Vec);
-
 Sca mat_get_val(const Mat, const Dim, const Dim);
 Sca mat_set_val(Mat, const Dim, const Dim, const Sca);
 

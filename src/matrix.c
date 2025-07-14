@@ -71,14 +71,14 @@ Dim mat_get_col(const Mat self) {
     return self->col;
 }
 
-Vec mat_get_vec(const Mat self, const Dim row) {
+static Vec mat_get_vec(const Mat self, const Dim row) {
     ASSERT_NE_NULL(self);
     ASSERT_LT(row, mat_get_row(self));
 
     return self->vec[row];
 }
 
-Vec mat_set_vec(Mat self, const Dim row, const Vec vec) {
+static Vec mat_set_vec(Mat self, const Dim row, const Vec vec) {
     ASSERT_NE_NULL(self);
     ASSERT_NE_NULL(vec);
     ASSERT_LT(row, mat_get_row(self));
