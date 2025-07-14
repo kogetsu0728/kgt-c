@@ -23,9 +23,6 @@ Vec mat_set_vec(Mat, const Dim, const Vec);
 Sca mat_get_val(const Mat, const Dim, const Dim);
 Sca mat_set_val(Mat, const Dim, const Dim, const Sca);
 
-Mat sca_to_mat(const Sca);
-Mat vec_to_mat(const Vec);
-
 void mat_out(const Mat, FILE*);
 
 Mat mat_add(const Mat, const Mat);

@@ -66,14 +66,6 @@ Sca vec_set_val(Vec self, const Dim dim, const Sca sca) {
     return self->val[dim] = sca;
 }
 
-Vec sca_to_vec(const Sca sca) {
-    Vec res = vec_new(1);
-
-    vec_set_val(res, 0, sca);
-
-    return res;
-}
-
 void vec_out(const Vec self, FILE* str) {
     ASSERT_NE_NULL(self);
 

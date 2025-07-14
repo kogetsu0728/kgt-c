@@ -109,30 +109,6 @@ Sca mat_set_val(Mat self, const Dim row, const Dim col, const Sca sca) {
     return vec_set_val(mat_get_vec(self, row), col, sca);
 }
 
-Mat sca_to_mat(const Sca sca) {
-    Mat res = mat_new(1, 1);
-
-    mat_set_val(res, 0, 0, sca);
-
-    return res;
-}
-
-Mat vec_to_mat(const Vec vec) {
-    ASSERT_NE_NULL(vec);
-
-    const Dim row = vec_get_dim(vec);
-
-    Mat res = mat_new(row, 1);
-
-    for (Dim i = 0; i < row; ++i) {
-        const Sca val = vec_get_val(vec, i);
-
-        mat_set_val(res, i, 0, val);
-    }
-
-    return res;
-}
-
 void mat_out(const Mat self, FILE* str) {
     ASSERT_NE_NULL(self);
     ASSERT_NE_NULL(str);

@@ -29,8 +29,6 @@ Dim vec_get_dim(const Vec);
 Sca vec_get_val(const Vec, const Dim);
 Sca vec_set_val(Vec, const Dim, const Sca);
 
-Vec sca_to_vec(const Sca);
-
 void vec_out(const Vec, FILE*);
 
 Vec vec_app(const Vec, const ScaFun);
