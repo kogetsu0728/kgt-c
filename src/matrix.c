@@ -71,6 +71,21 @@ Dim mat_get_col(const Mat self) {
     return self->col;
 }
 
+Vec mat_get_vec(const Mat self, const Dim row) {
+    ASSERT_NE_NULL(self);
+    ASSERT_LT(row, mat_get_row(self));
+
+    return self->vec[row];
+}
+
+Vec mat_set_vec(const Mat self, const Dim row, const Vec vec) {
+    ASSERT_NE_NULL(self);
+    ASSERT_LT(row, mat_get_row(self));
+    ASSERT_EQ(vec_get_dim(vec), mat_get_col(self));
+
+    return self->vec[row] = vec;
+}
+
 Sca mat_get_val(const Mat self, const Dim row, const Dim col) {
     ASSERT_NE_NULL(self);
     ASSERT_LT(row, mat_get_row(self));
