@@ -78,11 +78,14 @@ Vec mat_get_vec(const Mat self, const Dim row) {
     return self->vec[row];
 }
 
-Vec mat_set_vec(const Mat self, const Dim row, const Vec vec) {
+Vec mat_set_vec(Mat self, const Dim row, const Vec vec) {
     ASSERT_NE_NULL(self);
     ASSERT_NE_NULL(vec);
     ASSERT_LT(row, mat_get_row(self));
     ASSERT_EQ(vec_get_dim(vec), mat_get_col(self));
+    ASSERT_NE(mat_get_vec(self, row), vec);
+
+    self->vec[row] = vec_del(mat_get_vec(self, row));
 
     return self->vec[row] = vec;
 }
