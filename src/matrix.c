@@ -478,3 +478,9 @@ bool mat_eq(const Mat lhs, const Mat rhs) {
 
     return true;
 }
+
+bool mat_ne(const Mat lhs, const Mat rhs) {
+    const bool eq = mat_eq(lhs, rhs);
+
+    return !eq;
+}
