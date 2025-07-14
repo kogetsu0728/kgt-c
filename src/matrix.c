@@ -511,3 +511,27 @@ bool mat_gt(const Mat lhs, const Mat rhs) {
 
     return false;
 }
+
+bool mat_ge(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+
+    const bool gt = mat_ge(lhs, rhs);
+    const bool eq = mat_eq(lhs, rhs);
+
+    return (gt || eq);
+}
+
+bool mat_lt(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+
+    return mat_gt(rhs, lhs);
+}
+
+bool mat_le(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+
+    return mat_ge(rhs, lhs);
+}
