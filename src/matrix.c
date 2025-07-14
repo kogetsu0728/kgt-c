@@ -458,21 +458,12 @@ bool mat_eq(const Mat lhs, const Mat rhs) {
         return false;
     }
 
-    const Dim cl = mat_get_col(lhs);
-    const Dim cr = mat_get_col(rhs);
-
-    if (cl != cr) {
-        return false;
-    }
-
     for (Dim i = 0; i < rl; ++i) {
-        for (Dim j = 0; j < cl; ++j) {
-            const Dim vl = mat_get_val(lhs, i, j);
-            const Dim vr = mat_get_val(rhs, i, j);
+        const Vec vl = lhs->vec[i];
+        const Vec vr = rhs->vec[i];
 
-            if (vl != vr) {
-                return false;
-            }
+        if (!vec_eq(vl, vr)) {
+            return false;
         }
     }
 
@@ -480,7 +471,43 @@ bool mat_eq(const Mat lhs, const Mat rhs) {
 }
 
 bool mat_ne(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+
     const bool eq = mat_eq(lhs, rhs);
 
     return !eq;
+}
+
+bool mat_gt(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+
+    const Dim rl = mat_get_row(lhs);
+    const Dim rr = mat_get_row(rhs);
+
+    const Dim rm = GET_MAX(rl, rr);
+
+    for (Dim i = 0; i < rm; ++i) {
+        if (i >= rl) {
+            return false;
+        }
+
+        if (i >= rr) {
+            return true;
+        }
+
+        const Vec vl = lhs->vec[i];
+        const Vec vr = rhs->vec[i];
+
+        if (vec_lt(vl, vr)) {
+            return false;
+        }
+
+        if (vec_gt(vl, vr)) {
+            return true;
+        }
+    }
+
+    return false;
 }
