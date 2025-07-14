@@ -446,3 +446,35 @@ Mat mat_div_sca(const Mat lhs, const Sca rhs) {
 
     return res;
 }
+
+bool mat_eq(const Mat lhs, const Mat rhs) {
+    ASSERT_NE_NULL(lhs);
+    ASSERT_NE_NULL(rhs);
+
+    const Dim rl = mat_get_row(lhs);
+    const Dim rr = mat_get_row(rhs);
+
+    if (rl != rr) {
+        return false;
+    }
+
+    const Dim cl = mat_get_col(lhs);
+    const Dim cr = mat_get_col(rhs);
+
+    if (cl != cr) {
+        return false;
+    }
+
+    for (Dim i = 0; i < rl; ++i) {
+        for (Dim j = 0; j < cl; ++j) {
+            const Dim vl = mat_get_val(lhs, i, j);
+            const Dim vr = mat_get_val(rhs, i, j);
+
+            if (vl != vr) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
