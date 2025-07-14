@@ -7,3 +7,4 @@
 ```sh
 ./INSTALL
 ```
+これで、lib/libkgt.aが作られます。
