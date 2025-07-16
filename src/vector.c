@@ -100,6 +100,23 @@ void vec_out(const Vec self, FILE* str) {
     return;
 }
 
+Vec vec_fnc(const Vec self, const ScaFnc fnc) {
+    ASSERT_NE_NULL(self);
+    ASSERT_NE_NULL(fnc);
+
+    const Dim dim = vec_get_dim(self);
+
+    Vec res = vec_new(dim);
+
+    for (Dim i = 0; i < dim; ++i) {
+        const Sca val = vec_get_val(self, i);
+
+        vec_set_val(res, i, fnc(val));
+    }
+
+    return res;
+}
+
 Vec vec_add(const Vec lhs, const Vec rhs) {
     ASSERT_NE_NULL(lhs);
     ASSERT_NE_NULL(rhs);
