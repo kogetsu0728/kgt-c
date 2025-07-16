@@ -137,6 +137,24 @@ void mat_out(const Mat self, FILE* str) {
     return;
 }
 
+Mat mat_fnc(const Mat self, const ScaFnc fnc) {
+    ASSERT_NE_NULL(self);
+    ASSERT_NE_NULL(fnc);
+
+    const Dim row = mat_get_row(self);
+    const Dim col = mat_get_col(self);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        const Vec vec = mat_get_vec(self, i);
+
+        mat_set_vec(res, i, vec_fnc(vec, fnc));
+    }
+
+    return res;
+}
+
 Mat mat_add(const Mat lhs, const Mat rhs) {
     ASSERT_NE_NULL(lhs);
     ASSERT_NE_NULL(rhs);

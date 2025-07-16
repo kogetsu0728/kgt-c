@@ -23,6 +23,8 @@ Sca mat_set_val(Mat, const Dim, const Dim, const Sca);
 
 void mat_out(const Mat, FILE*);
 
+Mat mat_fnc(const Mat, const ScaFnc);
+
 Mat mat_add(const Mat, const Mat);
 Mat mat_sub(const Mat, const Mat);
 Mat mat_mul(const Mat, const Mat);
