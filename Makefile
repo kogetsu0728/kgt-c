@@ -2,18 +2,21 @@ INCDIR  = include
 SRCDIR  = src
 LIBDIR  = lib
 
-OBJ     = $(SRCDIR)/vector.o $(SRCDIR)/matrix.o
+OBJ     = $(SRCDIR)/scalar.o $(SRCDIR)/vector.o $(SRCDIR)/matrix.o
 LIB     = $(LIBDIR)/libkgt.a
 
 CC      = gcc
 CFLAGS  = -O2 -march=native -Wall -Wextra -Wshadow -I$(INCDIR)
 
-.PHONY: all clean
+.PHONY: all clean format
 
 all:    $(LIB)
 
 clean:
-	rm -f $(LIB) $(OBJ)
+	rm -f $(OBJ) $(LIB)
+
+format:
+	clang-format -i $(INCDIR)/*.h $(SRCDIR)/*.c
 
 $(LIB): $(OBJ)
 	rm -f $(LIB)
