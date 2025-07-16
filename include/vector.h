@@ -1,9 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "scalar.h"
