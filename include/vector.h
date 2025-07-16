@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "scalar.h"
-#include "utility.h"
 
 typedef size_t Dim;
 

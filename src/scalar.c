@@ -8,6 +8,8 @@ Sca sca_rnd(const Sca min, const Sca max) {
         init = true;
     }
 
+    ASSERT_LE(min, max);
+
     const Sca raw = rand();
 
     return raw * (max - min) / RAND_MAX + min;

@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "utility.h"
+
 typedef double Sca;
 typedef Sca (*ScaFnc)(const Sca);
 
