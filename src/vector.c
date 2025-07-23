@@ -46,6 +46,20 @@ Vec vec_cpy(const Vec self) {
     return res;
 }
 
+Vec vec_rsz(const Vec self, const Dim dim) {
+    ASSERT_NE_NULL(self);
+
+    Vec res = vec_new(dim);
+
+    const Dim mi = GET_MIN(self->dim, dim);
+
+    if (mi > 0) {
+        memcpy(res->val, self->val, sizeof(Sca) * mi);
+    }
+
+    return res;
+}
+
 Vec vec_asn(Vec self, const Vec vec) {
     if (self == vec) {
         return vec;

@@ -20,6 +20,7 @@ extern const Dim MAX_DIM;
 Vec vec_new(const Dim);
 Vec vec_del(Vec);
 Vec vec_cpy(const Vec);
+Vec vec_rsz(const Vec, const Dim);
 Vec vec_asn(Vec, const Vec);
 
 Dim vec_get_dim(const Vec);
