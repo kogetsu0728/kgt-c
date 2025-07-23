@@ -25,6 +25,8 @@ void mat_out(const Mat, FILE*);
 
 Mat mat_fnc(const Mat, const ScaFnc);
 
+Mat mat_trp(const Mat);
+
 Mat mat_add(const Mat, const Mat);
 Mat mat_sub(const Mat, const Mat);
 Mat mat_mul(const Mat, const Mat);

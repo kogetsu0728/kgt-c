@@ -155,6 +155,25 @@ Mat mat_fnc(const Mat self, const ScaFnc fnc) {
     return res;
 }
 
+Mat mat_trp(const Mat self) {
+    ASSERT_NE_NULL(self);
+
+    const Dim row = mat_get_col(self);
+    const Dim col = mat_get_row(self);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < row; ++i) {
+        for (Dim j = 0; j < col; ++j) {
+            const Sca val = mat_get_val(self, j, i);
+
+            mat_set_val(res, i, j, val);
+        }
+    }
+
+    return res;
+}
+
 Mat mat_add(const Mat lhs, const Mat rhs) {
     ASSERT_NE_NULL(lhs);
     ASSERT_NE_NULL(rhs);
