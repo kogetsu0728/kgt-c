@@ -60,6 +60,23 @@ Mat mat_cpy(const Mat self) {
     return res;
 }
 
+Mat mat_rsz(const Mat self, const Dim row, const Dim col) {
+    ASSERT_NE_NULL(self);
+
+    const Dim rm = GET_MIN(self->row, row);
+    const Dim cm = GET_MIN(self->col, col);
+
+    Mat res = mat_new(row, col);
+
+    for (Dim i = 0; i < rm; ++i) {
+        const Vec rsz = vec_rsz(self->vec[i], cm);
+
+        res->vec[i] = vec_asn(res->vec[i], rsz);
+    }
+
+    return res;
+}
+
 Mat mat_asn(Mat self, const Mat mat) {
     if (self == mat) {
         return mat;

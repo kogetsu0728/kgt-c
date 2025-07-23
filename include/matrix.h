@@ -13,6 +13,7 @@ typedef MatDat* Mat;
 Mat mat_new(const Dim, const Dim);
 Mat mat_del(Mat);
 Mat mat_cpy(const Mat);
+Mat mat_rsz(const Mat, const Dim, const Dim);
 Mat mat_asn(Mat, const Mat);
 
 Dim mat_get_row(const Mat);
